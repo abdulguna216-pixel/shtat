@@ -1,5 +1,11 @@
 # ШТАТ — сайт по утверждённому референсу
 
+## GitHub и Vercel
+
+Репозиторий: https://github.com/abdulguna216-pixel/shtat
+
+Для импорта в Vercel: корневая папка репозитория, Framework Preset — Other, Output Directory — `dist`. Сборка и установка зависимостей не нужны. Эти настройки уже заданы в `vercel.json`. Продакшен-ветка — `main`.
+
 ## Запуск
 
 Без установки зависимостей:
