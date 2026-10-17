@@ -25,3 +25,7 @@ mark:before{content:"";position:absolute;top:.08em;bottom:-.035em;left:0;right:0
 .hero mark:before{bottom:-.12em}.contact-art:before{display:none}
 @media(min-width:768px){.hero .display>span:first-child{transform:scaleX(.925);transform-origin:left}.hero .display>span:last-child{transform:scaleX(.97);transform-origin:left}.services-title .display{font-size:calc(47 * var(--u));line-height:.98}.company .display{transform:scaleX(.94);width:106.4%}.process .display{transform:scaleX(.95);width:105.3%}.benefits .display{transform:scaleX(.93);width:107.5%}.faq .display{transform:scaleX(.94);width:106.4%}.contact-title{transform:scaleX(.98);width:102.04%}}
 @media(max-width:767px){.contact-art{height:205px}.contact:after{width:100px;height:85px}.contact-art img{height:100%;width:42%}}
+/* Optional brief, using the same dark field treatment as the contact form. */
+.contact textarea{display:block;width:100%;max-width:100%;min-height:100px;height:calc(76 * var(--u));margin-top:calc(6 * var(--u));padding:calc(10 * var(--u)) calc(12 * var(--u));font:inherit;font-size:max(16px,calc(8 * var(--u)));line-height:1.5;color:var(--paper);background:#061e2a6b;border:1px solid #8293958a;border-radius:calc(4 * var(--u));resize:vertical}
+.contact textarea::placeholder{color:#c0c8c6;opacity:1}.contact textarea:focus-visible{outline:2px solid var(--lime);outline-offset:3px}
+@media(max-width:767px){.contact textarea{height:128px;min-height:110px;margin-top:12px;padding:12px 14px;font-size:16px;border-radius:4px;background:#061e2abf}}

@@ -90,12 +90,13 @@ function RequestForm() {
     error('name', name.length < 2 || name.length > 100 ? 'Укажите имя: от 2 до 100 символов.' : '');
     const digits = phone.replace(/\D/g, '');
     error('phone', !/^[+\d\s()\-]+$/.test(phone) || digits.length < 10 || digits.length > 15 ? 'Укажите корректный номер телефона.' : '');
+    error('comment', form.elements.comment.value.length > 2000 ? 'Комментарий должен содержать не больше 2000 символов.' : '');
     error('consent', !form.elements.consent.checked ? 'Подтвердите согласие с политикой.' : '');
     const invalid = form.querySelector('[aria-invalid=true]');
     if (invalid) invalid.focus();
     return !invalid;
   }
-  for (const input of form.querySelectorAll('input')) input.addEventListener('input', () => { if (input.getAttribute('aria-invalid') === 'true') error(input.id, ''); status.textContent = ''; });
+  for (const input of form.querySelectorAll('input, textarea')) input.addEventListener('input', () => { if (input.getAttribute('aria-invalid') === 'true') error(input.id, ''); status.textContent = ''; });
   form.addEventListener('submit', async e => {
     e.preventDefault(); if (sending) return; status.textContent = '';
     if (!valid()) return;
@@ -104,7 +105,7 @@ function RequestForm() {
     try {
       const endpoint = new URL(siteConfig.requestEndpoint, location.origin);
       if (endpoint.protocol !== 'https:') throw new Error('Для отправки необходим HTTPS.');
-      const response = await fetch(endpoint, { method: 'POST', headers: { 'Content-Type': 'application/json' }, signal: AbortSignal.timeout(15000), body: JSON.stringify({ name: form.elements.name.value.trim(), phone: form.elements.phone.value.trim(), service: form.elements.service.value, consent: true }) });
+      const response = await fetch(endpoint, { method: 'POST', headers: { 'Content-Type': 'application/json' }, signal: AbortSignal.timeout(15000), body: JSON.stringify({ name: form.elements.name.value.trim(), phone: form.elements.phone.value.trim(), service: form.elements.service.value, comment: form.elements.comment.value.trim(), consent: true }) });
       const result = await response.json();
       if (!response.ok || result.delivered !== true) throw new Error('Получатель не подтвердил доставку заявки.');
       status.textContent = 'Заявка доставлена. Спасибо за обращение!'; form.reset();
