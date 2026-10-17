@@ -1,0 +1,9 @@
+.git
+.openai
+.vercel
+.env*
+node_modules
+design
+scripts
+screenshots
+README.md
